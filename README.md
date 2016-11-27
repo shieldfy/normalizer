@@ -24,13 +24,8 @@ $value = "select/*!from*/information_schema.columns/*!where*/column_name%20/*!li
 
 //run all normalizers
 $result = (new \Shieldfy\Normalizer\Normalizer($value))->runAll();
-
-/* 
-output
-
-select from information_schema.columns where column_name like char(37, 112, 97, 115, 115, 37) %pass%
-
-*/
+echo $result;
+// select from information_schema.columns where column_name like char(37, 112, 97, 115, 115, 37) %pass%
 
 //run single normalizer
 $result = (new \Shieldfy\Normalizer\Normalizer($value))->run('comments');
