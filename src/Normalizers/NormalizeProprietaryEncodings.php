@@ -1,4 +1,5 @@
 <?php
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -6,31 +7,29 @@ use Shieldfy\Normalizer\PreSearchTrait;
 
 class NormalizeProprietaryEncodings implements NormalizeInterface
 {
-	use PreSearchTrait;
+    use PreSearchTrait;
 
-	protected $value;
+    protected $value;
 
-	/**
-	* Constructor
-	* 
-	* @param mixed $value
-	* 
-	*/
-	public function __construct($value)
-	{
-		$this->value = $value;
-		$this->preSearch = null;
-	}
+    /**
+     * Constructor.
+     *
+     * @param mixed $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+        $this->preSearch = null;
+    }
 
-	/**
-	* Run the Normalizer
-	* 
-	* @return mixed normalized $value
-	* 
-	*/
-	public function run()
-	{
-		//Xajax error reportings
+    /**
+     * Run the Normalizer.
+     *
+     * @return mixed normalized $value
+     */
+    public function run()
+    {
+        //Xajax error reportings
         $this->value = preg_replace('/<!\[CDATA\[(\W+)\]\]>/im', '$1', $this->value);
 
         //strip false alert triggering apostrophes
@@ -71,6 +70,5 @@ class NormalizeProprietaryEncodings implements NormalizeInterface
         $this->value = preg_replace('/\/\\\(\w)/', '/$1', $this->value);
 
         return $this->value;
-	}
-
+    }
 }

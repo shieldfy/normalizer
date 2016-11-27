@@ -1,4 +1,5 @@
 <?php
+
 namespace Shieldfy\Normalizer;
 
 /**
@@ -6,6 +7,7 @@ namespace Shieldfy\Normalizer;
  */
 interface NormalizeInterface
 {
-	public function __construct($value);
-	public function run();
+    public function __construct($value);
+
+    public function run();
 }

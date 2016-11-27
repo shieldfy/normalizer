@@ -1,4 +1,5 @@
 <?php
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -6,38 +7,38 @@ use Shieldfy\Normalizer\PreSearchTrait;
 
 class NormalizeUTF7 implements NormalizeInterface
 {
-	use PreSearchTrait;
+    use PreSearchTrait;
 
-	protected $value;
+    protected $value;
 
-	/**
-	* Constructor
-	* 
-	* @param mixed $value
-	* 
-	*/
-	public function __construct($value)
-	{
-		$this->value = $value;
-		$this->preSearch = ['+A','+I'];
-	}
+    /**
+     * Constructor.
+     *
+     * @param mixed $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+        $this->preSearch = ['+A', '+I'];
+    }
 
-	/**
-	* Run the Normalizer
-	* 
-	* @return mixed normalized $value
-	* 
-	*/
-	public function run()
-	{
-		if( !$this->runPreSearch() ) return $this->value;
+    /**
+     * Run the Normalizer.
+     *
+     * @return mixed normalized $value
+     */
+    public function run()
+    {
+        if (!$this->runPreSearch()) {
+            return $this->value;
+        }
 
         if (preg_match('/\+A\w+-?/m', $this->value)) {
             if (function_exists('mb_convert_encoding')) {
-                $this->value .= "\n" . mb_convert_encoding($this->value, 'UTF-8', 'UTF-7');
+                $this->value .= "\n".mb_convert_encoding($this->value, 'UTF-8', 'UTF-7');
             } else {
                 //list of all critical UTF7 codepoints
-                $schemes = array(
+                $schemes = [
                     '+ACI-'      => '"',
                     '+ADw-'      => '<',
                     '+AD4-'      => '>',
@@ -60,8 +61,8 @@ class NormalizeUTF7 implements NormalizeInterface
                     '+ACo-'      => '*',
                     '+AF4-'      => '^',
                     '+ACIAPg-'   => '">',
-                    '+ACIAPgA8-' => '">'
-                );
+                    '+ACIAPgA8-' => '">',
+                ];
 
                 $this->value = str_ireplace(
                     array_keys($schemes),
@@ -72,6 +73,5 @@ class NormalizeUTF7 implements NormalizeInterface
         }
 
         return $this->value;
-	}
-
+    }
 }

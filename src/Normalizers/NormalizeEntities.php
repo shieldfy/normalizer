@@ -1,4 +1,5 @@
 <?php
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -6,39 +7,39 @@ use Shieldfy\Normalizer\PreSearchTrait;
 
 class NormalizeEntities implements NormalizeInterface
 {
-	use PreSearchTrait;
+    use PreSearchTrait;
 
-	protected $value;
+    protected $value;
 
-	/**
-	* Constructor
-	* 
-	* @param mixed $value
-	* 
-	*/
-	public function __construct($value)
-	{
-		$this->value = $value;
-		$this->preSearch = ['&amp;','&#',':'];
-	}
+    /**
+     * Constructor.
+     *
+     * @param mixed $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+        $this->preSearch = ['&amp;', '&#', ':'];
+    }
 
-	/**
-	* Run the Normalizer
-	* 
-	* @return mixed normalized $value
-	* 
-	*/
-	public function run()
-	{
-		if( !$this->runPreSearch() ) return $this->value;
+    /**
+     * Run the Normalizer.
+     *
+     * @return mixed normalized $value
+     */
+    public function run()
+    {
+        if (!$this->runPreSearch()) {
+            return $this->value;
+        }
 
-		$converted = null;
+        $converted = null;
         //deal with double encoded payload
         $this->value = preg_replace('/&amp;/', '&', $this->value);
         if (preg_match('/&#x?[\w]+/ms', $this->value)) {
             $converted = preg_replace('/(&#x?[\w]{2,6}\d?);?/ms', '$1;', $this->value);
             $converted = html_entity_decode($converted, ENT_QUOTES, 'UTF-8');
-            $this->value    .= "\n" . str_replace(';;', ';', $converted);
+            $this->value .= "\n".str_replace(';;', ';', $converted);
         }
         // normalize obfuscated protocol handlers
         $this->value = preg_replace(
@@ -46,7 +47,7 @@ class NormalizeEntities implements NormalizeInterface
             'javascript:',
             $this->value
         );
-        return $this->value;
-	}
 
+        return $this->value;
+    }
 }
