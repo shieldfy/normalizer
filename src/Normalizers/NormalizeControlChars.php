@@ -47,7 +47,7 @@ class NormalizeControlChars implements NormalizeInterface
         }
 
         //take care for malicious unicode characters
-        $value = urldecode(
+        $this->value = urldecode(
             preg_replace(
                 '/(?:%E(?:2|3)%8(?:0|1)%(?:A|8|9)\w|%EF%BB%BF|%EF%BF%BD)|(?:&#(?:65|8)\d{3};?)/i',
                 null,

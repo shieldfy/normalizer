@@ -39,7 +39,7 @@ class Normalizer
     {
         $value = $this->value;
 
-        foreach ($this->normalizers as $name => $className) {
+        foreach ($this->normalizers as $className) {
             $value = (new $className($value))->run();
         }
 
