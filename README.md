@@ -3,6 +3,12 @@
 Shieldfy Normalizer is package to normalize the input to prepare for running hardcore IDS/IPS rules.
 The purpose of the Normalizers is to normalize the inputs to fight against WAF Bypassing techniques using obfuscation or other techniques to hide payloads.
 
+[![Packagist](https://img.shields.io/packagist/v/shieldfy/normalizer.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/shieldfy/normalizer)
+[![License](https://img.shields.io/packagist/l/shieldfy/normalizer.svg?label=License&style=flat-square)](https://github.com/shieldfy/normalizer/blob/master/LICENSE)
+[![Code Climate](https://img.shields.io/codeclimate/github/shieldfy/normalizer.svg)](https://codeclimate.com/github/shieldfy/normalizer)
+[![Travis](https://img.shields.io/travis/shieldfy/normalizer.svg)](https://travis-ci.org/shieldfy/normalizer)
+
+
 ## important note
 
 This package is based on the original converters written by Mario Heiderich & Christian Matthies the original creators of [PHP IDS](https://github.com/PHPIDS/PHPIDS/) project and the generous security & opensource community.
