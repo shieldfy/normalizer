@@ -1,4 +1,5 @@
 <?php
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -6,38 +7,36 @@ use Shieldfy\Normalizer\PreSearchTrait;
 
 class NormalizeConcatenated implements NormalizeInterface
 {
-	use PreSearchTrait;
+    use PreSearchTrait;
 
-	protected $value;
+    protected $value;
 
-	/**
-	* Constructor
-	* 
-	* @param mixed $value
-	* 
-	*/
-	public function __construct($value)
-	{
-		$this->value = $value;
-		$this->preSearch = null;
-	}
+    /**
+     * Constructor.
+     *
+     * @param mixed $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+        $this->preSearch = null;
+    }
 
-	/**
-	* Run the Normalizer
-	* 
-	* @return mixed normalized $value
-	* 
-	*/
-	public function run()
-	{
-		//normalize remaining backslashes
-        if ($this->value != preg_replace('/(\w)\\\/', "$1", $this->value)) {
-            $this->value .= preg_replace('/(\w)\\\/', "$1", $this->value);
+    /**
+     * Run the Normalizer.
+     *
+     * @return mixed normalized $value
+     */
+    public function run()
+    {
+        //normalize remaining backslashes
+        if ($this->value != preg_replace('/(\w)\\\/', '$1', $this->value)) {
+            $this->value .= preg_replace('/(\w)\\\/', '$1', $this->value);
         }
 
         $compare = stripslashes($this->value);
 
-        $pattern = array(
+        $pattern = [
             '/(?:<\/\w+>\+<\w+>)/s',
             '/(?:":\d+[^"[]+")/s',
             '/(?:"?"\+\w+\+")/s',
@@ -55,17 +54,17 @@ class NormalizeConcatenated implements NormalizeInterface
             '/(?:[{(]\s*new\s+\w+\s*[)}])/',
             '/(?:(this|self)\.)/',
             '/(?:undefined)/',
-            '/(?:in\s+)/'
-        );
+            '/(?:in\s+)/',
+        ];
 
         // strip out concatenations
         $converted = preg_replace($pattern, null, $compare);
 
         //strip object traversal
-        $converted = preg_replace('/\w(\.\w\()/', "$1", $converted);
+        $converted = preg_replace('/\w(\.\w\()/', '$1', $converted);
 
         // normalize obfuscated method calls
-        $converted = preg_replace('/\)\s*\+/', ")", $converted);
+        $converted = preg_replace('/\)\s*\+/', ')', $converted);
 
         //convert JS special numbers
         $converted = preg_replace(
@@ -75,10 +74,9 @@ class NormalizeConcatenated implements NormalizeInterface
         );
 
         if ($converted && ($compare != $converted)) {
-            $this->value .= "\n" . $converted;
+            $this->value .= "\n".$converted;
         }
 
         return $this->value;
-	}
-
+    }
 }
