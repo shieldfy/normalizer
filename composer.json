@@ -1,0 +1,37 @@
+{
+    "name": "shieldfy/normalizer",
+    "description": "input normalization package",
+    "type": "library",
+    "keywords": [
+        "shieldfy",
+        "normalize",
+        "security",
+        "detection"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shieldfy Inc.",
+            "homepage":"https://shieldfy.com",
+            "email": "team@shieldfy.com"
+        },
+        {
+            "name": "Eslam Salem",
+            "email": "eslam@shieldfy.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Shieldfy\\Normalizer\\": "src/"
+      }
+    },
+    "require": {
+        "php": ">=5.6",
+        "shieldfy/sniffer":"1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
