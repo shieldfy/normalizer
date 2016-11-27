@@ -53,8 +53,8 @@ class NormalizeSerialize implements NormalizeInterface
 
         if (is_array($decoded)) {
             $array_value = '';
-            array_walk_recursive($decoded, function ($v, $k) use (&$array_value) {
-                $array_value .= $k.' '.$v;
+            array_walk_recursive($decoded, function ($value, $key) use (&$array_value) {
+                $array_value .= $key.' '.$value;
             });
             $decoded = $array_value;
         }

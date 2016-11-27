@@ -39,8 +39,8 @@ class NormalizeJson implements NormalizeInterface
             /* decoded is array */
             if (is_array($decoded)) {
                 $array_value = '';
-                array_walk_recursive($decoded, function ($v, $k) use (&$array_value) {
-                    $array_value .= $k.' '.$v;
+                array_walk_recursive($decoded, function ($value, $key) use (&$array_value) {
+                    $array_value .= $key.' '.$value;
                 });
                 $this->value = $array_value;
             }
