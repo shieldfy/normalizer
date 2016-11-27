@@ -37,9 +37,9 @@ class NormalizeSQLHex implements NormalizeInterface
         if (preg_match_all('/(?:(?:\A|[^\d])0x[a-f\d]{3,}[a-f\d]*)+/im', $this->value, $matches)) {
             foreach ($matches[0] as $match) {
                 $converted = '';
-                foreach (str_split($match, 2) as $hex_index) {
-                    if (preg_match('/[a-f\d]{2,3}/i', $hex_index)) {
-                        $converted .= chr(hexdec($hex_index));
+                foreach (str_split($match, 2) as $hexIndex) {
+                    if (preg_match('/[a-f\d]{2,3}/i', $hexIndex)) {
+                        $converted .= chr(hexdec($hexIndex));
                     }
                 }
                 $this->value = str_replace($match, $converted, $this->value);

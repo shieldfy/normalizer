@@ -38,11 +38,11 @@ class NormalizeJson implements NormalizeInterface
         if ($result) {
             /* decoded is array */
             if (is_array($decoded)) {
-                $array_value = '';
-                array_walk_recursive($decoded, function ($value, $key) use (&$array_value) {
-                    $array_value .= $key.' '.$value;
+                $arrayValue = '';
+                array_walk_recursive($decoded, function ($value, $key) use (&$arrayValue) {
+                    $arrayValue .= $key.' '.$value;
                 });
-                $this->value = $array_value;
+                $this->value = $arrayValue;
             }
         }
 
