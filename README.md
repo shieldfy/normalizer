@@ -11,7 +11,7 @@ The purpose of the Normalizers is to normalize the inputs to fight against WAF B
 
 ## important note
 
-This package is based on the original converters written by Mario Heiderich & Christian Matthies the original creators of [PHP IDS](https://github.com/PHPIDS/PHPIDS/) project and the generous security & opensource community.
+This package is based on the original converters written by Mario Heiderich & Christian Matthies the creators of [PHP IDS](https://github.com/PHPIDS/PHPIDS/) project with help from the generous security & opensource community.
 
 ## Installation
 
