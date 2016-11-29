@@ -31,7 +31,7 @@ class NormalizeControlChars implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = ['%', '&#'];
     }
 
@@ -55,7 +55,7 @@ class NormalizeControlChars implements NormalizeInterface
         $this->value = str_replace($search, '%00', $this->value);
 
 
-        if (!$this->runPreSearch()) {
+        if (! $this->runPreSearch()) {
             return $this->value;
         }
 

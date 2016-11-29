@@ -31,7 +31,7 @@ class NormalizeWhiteSpace implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = null;
     }
 
@@ -43,7 +43,7 @@ class NormalizeWhiteSpace implements NormalizeInterface
     public function run()
     {
         //check for inline linebreaks
-        $search = ['\r', '\n', '\f', '\t', '\v'];
+        $search      = ['\r', '\n', '\f', '\t', '\v'];
         $this->value = str_replace($search, ';', $this->value);
         // replace replacement characters regular spaces
         $this->value = str_replace('�', ' ', $this->value);
