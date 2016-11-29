@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * NOTICE OF LICENSE
+ *
+ * Part of the Shieldfy Normaization Package.
+ *
+ * This source file is subject to The MIT License (MIT)
+ * that is bundled with this package in the LICENSE file.
+ *
+ * Package: Shieldfy Normaization Package
+ * License: The MIT License (MIT)
+ * Link:    https://shieldfy.com
+ */
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -18,7 +31,7 @@ class NormalizeJson implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = [':', '{', '['];
     }
 
@@ -29,12 +42,12 @@ class NormalizeJson implements NormalizeInterface
      */
     public function run()
     {
-        if (!$this->runPreSearch()) {
+        if (! $this->runPreSearch()) {
             return $this->value;
         }
 
         $decoded = json_decode($this->value, 1);
-        $result = (json_last_error() == JSON_ERROR_NONE) && is_array($decoded);
+        $result  = (json_last_error() == JSON_ERROR_NONE) && is_array($decoded);
         if ($result) {
             /* decoded is array */
             if (is_array($decoded)) {

@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * NOTICE OF LICENSE
+ *
+ * Part of the Shieldfy Normaization Package.
+ *
+ * This source file is subject to The MIT License (MIT)
+ * that is bundled with this package in the LICENSE file.
+ *
+ * Package: Shieldfy Normaization Package
+ * License: The MIT License (MIT)
+ * Link:    https://shieldfy.com
+ */
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -18,7 +31,7 @@ class NormalizeJSCharcode implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = null;
     }
 
@@ -34,10 +47,10 @@ class NormalizeJSCharcode implements NormalizeInterface
         // check if value matches typical charCode pattern
         if (preg_match_all('/(?:[\d+-=\/\* ]+(?:\s?,\s?[\d+-=\/\* ]+)){4,}/ms', $this->value, $matches)) {
             $converted = '';
-            $string = implode(',', $matches[0]);
-            $string = preg_replace('/\s/', '', $string);
-            $string = preg_replace('/\w+=/', '', $string);
-            $charcode = explode(',', $string);
+            $string    = implode(',', $matches[0]);
+            $string    = preg_replace('/\s/', '', $string);
+            $string    = preg_replace('/\w+=/', '', $string);
+            $charcode  = explode(',', $string);
 
             foreach ($charcode as $char) {
                 $char = preg_replace('/\W0/s', '', $char);
@@ -48,7 +61,7 @@ class NormalizeJSCharcode implements NormalizeInterface
                     if (array_sum($match) >= 20 && array_sum($match) <= 127) {
                         $converted .= chr(array_sum($match));
                     }
-                } elseif (!empty($char) && $char >= 20 && $char <= 127) {
+                } elseif (! empty($char) && $char >= 20 && $char <= 127) {
                     $converted .= chr($char);
                 }
             }
@@ -59,7 +72,7 @@ class NormalizeJSCharcode implements NormalizeInterface
         // check for octal charcode pattern
         if (preg_match_all('/(?:(?:[\\\]+\d+[ \t]*){8,})/ims', $this->value, $matches)) {
             $converted = '';
-            $charcode = explode('\\', preg_replace('/\s/', '', implode(',', $matches[0])));
+            $charcode  = explode('\\', preg_replace('/\s/', '', implode(',', $matches[0])));
 
             foreach (array_map('octdec', array_filter($charcode)) as $char) {
                 if (20 <= $char && $char <= 127) {
@@ -72,7 +85,7 @@ class NormalizeJSCharcode implements NormalizeInterface
         // check for hexadecimal charcode pattern
         if (preg_match_all('/(?:(?:[\\\]+\w+\s*){8,})/ims', $this->value, $matches)) {
             $converted = '';
-            $charcode = explode('\\', preg_replace('/[ux]/', '', implode(',', $matches[0])));
+            $charcode  = explode('\\', preg_replace('/[ux]/', '', implode(',', $matches[0])));
 
             foreach (array_map('hexdec', array_filter($charcode)) as $char) {
                 if (20 <= $char && $char <= 127) {

@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * NOTICE OF LICENSE
+ *
+ * Part of the Shieldfy Normaization Package.
+ *
+ * This source file is subject to The MIT License (MIT)
+ * that is bundled with this package in the LICENSE file.
+ *
+ * Package: Shieldfy Normaization Package
+ * License: The MIT License (MIT)
+ * Link:    https://shieldfy.com
+ */
+
 namespace Shieldfy\Normalizer;
 
 class Normalizer
@@ -49,7 +62,7 @@ class Normalizer
     public function run($normalizer)
     {
         $value = $this->value;
-        if (!isset($this->normalizers[$normalizer])) {
+        if (! isset($this->normalizers[$normalizer])) {
             throw new \Exception('Normalizer Not found use one of supported normalizers ( '.implode(' , ', array_keys($this->normalizers)).' )');
         }
 
