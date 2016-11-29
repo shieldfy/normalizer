@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * NOTICE OF LICENSE
+ *
+ * Part of the Shieldfy Normaization Package.
+ *
+ * This source file is subject to The MIT License (MIT)
+ * that is bundled with this package in the LICENSE file.
+ *
+ * Package: Shieldfy Normaization Package
+ * License: The MIT License (MIT)
+ * Link:    https://shieldfy.com
+ */
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -29,7 +42,7 @@ class NormalizeSQLHex implements NormalizeInterface
      */
     public function run()
     {
-        if (!$this->runPreSearch()) {
+        if (! $this->runPreSearch()) {
             return $this->value;
         }
 

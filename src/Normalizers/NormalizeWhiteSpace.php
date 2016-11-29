@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * NOTICE OF LICENSE
+ *
+ * Part of the Shieldfy Normaization Package.
+ *
+ * This source file is subject to The MIT License (MIT)
+ * that is bundled with this package in the LICENSE file.
+ *
+ * Package: Shieldfy Normaization Package
+ * License: The MIT License (MIT)
+ * Link:    https://shieldfy.com
+ */
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -34,6 +47,7 @@ class NormalizeWhiteSpace implements NormalizeInterface
         $this->value = str_replace($search, ';', $this->value);
         // replace replacement characters regular spaces
         $this->value = str_replace('�', ' ', $this->value);
+
         //convert real linebreaks
         return preg_replace('/(?:\n|\r|\v)/m', '  ', $this->value);
     }

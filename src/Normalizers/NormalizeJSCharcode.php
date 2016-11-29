@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * NOTICE OF LICENSE
+ *
+ * Part of the Shieldfy Normaization Package.
+ *
+ * This source file is subject to The MIT License (MIT)
+ * that is bundled with this package in the LICENSE file.
+ *
+ * Package: Shieldfy Normaization Package
+ * License: The MIT License (MIT)
+ * Link:    https://shieldfy.com
+ */
+
 namespace Shieldfy\Normalizer\Normalizers;
 
 use Shieldfy\Normalizer\NormalizeInterface;
@@ -48,7 +61,7 @@ class NormalizeJSCharcode implements NormalizeInterface
                     if (array_sum($match) >= 20 && array_sum($match) <= 127) {
                         $converted .= chr(array_sum($match));
                     }
-                } elseif (!empty($char) && $char >= 20 && $char <= 127) {
+                } elseif (! empty($char) && $char >= 20 && $char <= 127) {
                     $converted .= chr($char);
                 }
             }
