@@ -32,7 +32,7 @@ class NormalizeSerialize implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = [':', ';', '{'];
     }
 

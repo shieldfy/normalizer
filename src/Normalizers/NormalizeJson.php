@@ -31,7 +31,7 @@ class NormalizeJson implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = [':', '{', '['];
     }
 
@@ -47,7 +47,7 @@ class NormalizeJson implements NormalizeInterface
         }
 
         $decoded = json_decode($this->value, 1);
-        $result = (json_last_error() == JSON_ERROR_NONE) && is_array($decoded);
+        $result  = (json_last_error() == JSON_ERROR_NONE) && is_array($decoded);
         if ($result) {
             /* decoded is array */
             if (is_array($decoded)) {

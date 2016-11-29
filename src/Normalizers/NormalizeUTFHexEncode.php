@@ -31,7 +31,7 @@ class NormalizeUTFHexEncode implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = ['\u', '%u'];
     }
 
@@ -55,7 +55,7 @@ class NormalizeUTFHexEncode implements NormalizeInterface
             foreach ($matches[0] as $match) {
                 $unicode = str_replace('%u', '\\u', $match);
                 //echo $unicode;exit;
-                $unicode = json_decode('["'.$unicode.'"]');
+                $unicode     = json_decode('["'.$unicode.'"]');
                 $this->value = str_replace($match, $unicode[0], $this->value);
             }
             $this->value .= "\n\u0001";

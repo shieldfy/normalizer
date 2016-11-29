@@ -31,7 +31,7 @@ class NormalizeComments implements NormalizeInterface
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value     = $value;
         $this->preSearch = ['<!', '/*', '--', '#'];
     }
 
@@ -53,7 +53,7 @@ class NormalizeComments implements NormalizeInterface
                 '/(?:(?:\/\*\/*[^\/\*!]*)+\*\/)/ms', //add ! to avoid remove sql target comments /*! */
                 '/(?:--[^-]*-)/ms',
             ];
-            $converted = preg_replace($pattern, ';', $this->value);
+            $converted   = preg_replace($pattern, ';', $this->value);
             $this->value = "\n".$converted;
         }
         //make sure inline comments are detected and converted correctly
