@@ -81,6 +81,6 @@ This package is based on the original converters written by Mario Heiderich & Ch
 
 ## License
 
-This software is released under [GNU GENERAL PUBLIC LICENSE](LICENSE).
+This software is released under [The MIT License (MIT)](LICENSE).
 
-(c) 2016 Shieldfy, Some rights reserved.
+(c) 2016 Shieldfy Inc, Some rights reserved.
