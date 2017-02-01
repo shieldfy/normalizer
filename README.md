@@ -45,6 +45,12 @@ Install the package via composer:
 composer require shieldfy/normalizer
 ```
 
+### note about serialization
+
+Serialize / Unserialize can be danger due to its ability to convert object and it can be used to preform object injection attack.
+So explicit normalization not allowed in php version before php 7 thats because php7 offered new options to prevent object serialization
+see [here](http://php.net/unserialize)
+
 
 ## Changelog
 
