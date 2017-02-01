@@ -63,10 +63,10 @@ class NormalizeSerialize implements NormalizeInterface
             //options added @ v 7.0 which allow no evaluating for classes
             //object will be instantiated as __PHP_Incomplete_Class
             $decoded = @unserialize($this->value);
-        }else{
+        } else {
             $decoded = false; //don't serialize it might be danger
         }
-        
+
         if ($decoded === false) {
             return $this->value;
         }
