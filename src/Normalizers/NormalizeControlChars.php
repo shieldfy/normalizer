@@ -43,7 +43,6 @@ class NormalizeControlChars implements NormalizeInterface
     public function run()
     {
 
-
         // critical ctrl values
         $search = [
             chr(0), chr(1), chr(2), chr(3), chr(4), chr(5),
@@ -53,7 +52,6 @@ class NormalizeControlChars implements NormalizeInterface
         ];
 
         $this->value = str_replace($search, '%00', $this->value);
-
 
         if (! $this->runPreSearch()) {
             return $this->value;
