@@ -46,7 +46,7 @@ class NormalizeBase64 implements NormalizeInterface
             return $this->value;
         }
 
-        if (preg_match('/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/isU', $this->value)) {
+        if ((strlen($this->value) % 4 == 0) and preg_match('/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/isU', $this->value)) {
             $decoded = base64_decode($this->value, true);
             if (base64_encode($decoded) === $this->value) {
                 return $decoded;
