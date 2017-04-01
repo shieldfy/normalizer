@@ -80,7 +80,7 @@ class NormalizeSerialize implements NormalizeInterface
         }
 
         //Object of class __PHP_Incomplete_Class
-        if(gettype($decoded) === 'object'){
+        if (gettype($decoded) === 'object') {
             //object serialize must be the same
             return $this->value;
         }
