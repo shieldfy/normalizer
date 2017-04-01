@@ -62,7 +62,7 @@ class NormalizeSerialize implements NormalizeInterface
         if (version_compare(PHP_VERSION, '7.0.0') >= 0) {
             //options added @ v 7.0 which allow no evaluating for classes
             //object will be instantiated as __PHP_Incomplete_Class
-            $decoded = @unserialize($this->value, false);
+            $decoded = @unserialize($this->value, []);
         } else {
             $decoded = false; //don't serialize it might be danger
         }
@@ -77,6 +77,12 @@ class NormalizeSerialize implements NormalizeInterface
                 $arrayValue .= $key.' '.$value;
             });
             $decoded = $arrayValue;
+        }
+
+        //Object of class __PHP_Incomplete_Class
+        if(gettype($decoded) === 'object'){
+            //object serialize must be the same
+            return $this->value;
         }
 
         return $decoded;
