@@ -47,7 +47,7 @@ class NormalizeSerialize implements NormalizeInterface
             return $this->value;
         }
 
-        $result = (new Sniffer())->sniff($this->value, 'serialize');
+        $result = (new Sniffer())->is($this->value, 'serialize');
         if (! $result) {
             return $this->value;
         }
